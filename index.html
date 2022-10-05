@@ -4,9 +4,61 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1005project</title>
+    <title>BMI計算</title>
 </head>
 <body>
-    <h1>github</h1>
+    <div class="card" style="width: 40rem;position:relative; left: 600px; top: 20px;">
+        <img src="https://shoplineimg.com/5d5a5cbfec3a6d000184958b/5d7bd87cc36ae2003edb3c80/800x.png?" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">計算BMI        
+          </h5>
+          <span class="01">身　高(cm):</span>
+        <input id="height" type="text" value="" size="11" style="border: 2px solid #370bad">
+         <br>
+
+         <span class="01">體　重(kg):</span>
+         <input id="weight" type="text" size="11" style="border: 2px solid #370bad" value="">
+          <br>
+
+    
+        <button type="button" class="btn btn-danger" onclick="calBMI()">計算BMI</button>
+          <div id="bmi"style="color:red; font: size 50px"; > </div>
+          
+        </div>
+      </div>
+
+
+    <script>
+        function calBMI() {
+            var h, w
+            h = parseInt(document.getElementById('height').value)
+            w = parseInt(document.getElementById('weight').value)
+
+            let bmi = getBMI(w, h)
+            if (bmi < 18.5) {
+                result = '體重過輕'
+            } else if (18.5 <= bmi && bmi < 24) {
+                result = '正常範圍'
+            } else if (24 <= bmi && bmi < 27) {
+                result = '過重'
+            } else if (27 <= bmi && bmi < 30) {
+                result = '輕度肥胖'
+            } else if (30 <= bmi && bmi < 35) {
+                result = '中度肥胖'
+            } else if (35 <= bmi) {
+                result = '重度肥胖'
+            } else {
+                result = '判斷錯誤';
+            }
+            document.getElementById('bmi').innerHTML = `BMI為${bmi}，您的體型${result}`
+
+        }
+
+        function getBMI(w, h) {
+            h = h / 100
+
+            return (w / (h * h)).toFixed(1)
+        }
+    </script>
 </body>
 </html>
